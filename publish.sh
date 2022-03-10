@@ -73,6 +73,7 @@ npm run build
 popd
 
 pushd pca-ui/src/witch
+npm install
 npm run build
 popd
 
