@@ -55,5 +55,8 @@ jobs:
           chmod +x /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh
           /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh 'danpcacicd' 'pca/artifacts'
       
+      - name: "Wait for pending updates to CloudFormation Stack"
+        run: aws cloudformation wait stack-update-complete --stack-name=PostCallAnalytics
+        
       - name: "Deploy CloudFormation"
         run: aws cloudformation deploy --template-file /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/build/packaged.template --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --stack-name PostCallAnalytics --parameter-overrides AdminEmail=dabrun@amazon.com
