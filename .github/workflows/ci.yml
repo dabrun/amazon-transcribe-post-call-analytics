@@ -57,6 +57,6 @@ jobs:
 
       - name: "Copy CloudFormation templates"
         run: |
-          chmod +x publish.sh
-          publish.sh 'danpcacicd'
+          chmod +x /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh
+          /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh 'danpcacicd'
           
