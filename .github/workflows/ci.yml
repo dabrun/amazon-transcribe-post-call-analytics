@@ -58,5 +58,5 @@ jobs:
       - name: "Copy CloudFormation templates"
         run: |
           chmod +x /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh
-          /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh 'danpcacicd'
+          /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh 'danpcacicd' 'pca/artifacts'
           
