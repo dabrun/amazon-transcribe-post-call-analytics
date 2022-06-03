@@ -26,7 +26,7 @@ function Navigation({ userName }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand>Principal Transcribe PCA</Navbar.Brand>
+        <Navbar.Brand>PFG Post Call Analytics</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
