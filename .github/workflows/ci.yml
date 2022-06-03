@@ -42,6 +42,7 @@ jobs:
         working-directory: ./pca-ui/src/lambda
         
   publish-artifacts:
+    needs: [cfn-linter, api-tests]
     runs-on: ubuntu-latest
     steps:
       - name: "Configure AWS Credentials" 
@@ -49,4 +50,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: us-east-1
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: "Copy CloudFormation templates"
+        run: |
+          chmod +x publish.sh
+          publish.sh 'danpcacicd'
+          
