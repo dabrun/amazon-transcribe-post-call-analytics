@@ -41,7 +41,7 @@ jobs:
         run: npm t
         working-directory: ./pca-ui/src/lambda
         
-  publish-artifacts:
+  deploy:
     needs: [cfn-linter, api-tests]
     runs-on: ubuntu-latest
     steps:
@@ -55,8 +55,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: "Copy CloudFormation templates"
+      - name: "Publish Artifacts"
         run: |
           chmod +x /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh
           /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/publish.sh 'danpcacicd' 'pca/artifacts'
+      
+      - name: "Deploy CloudFormation"
+        run: aws cloudformation deploy --template-file /home/runner/work/amazon-transcribe-post-call-analytics/amazon-transcribe-post-call-analytics/build/packaged.template --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --stack-name PostCallAnalytics --parameter-overrides AdminEmail=dabrun@amazon.com
           
